@@ -3,13 +3,13 @@ const CACHE_NAME = 'mis-tareas-v1';
 
 // Archivos que se guardarán en caché para funcionar offline
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/mi-pwa-tareas/',
+  '/mi-pwa-tareas/index.html',
+  '/mi-pwa-tareas/styles.css',
+  '/mi-pwa-tareas/app.js',
+  '/mi-pwa-tareas/manifest.json',
+  '/mi-pwa-tareas/icons/icon-192.png',
+  '/mi-pwa-tareas/icons/icon-512.png'
 ];
 
 // Evento de instalación del Service Worker

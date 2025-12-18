@@ -32,7 +32,7 @@ const dismissButton = document.getElementById('dismissButton');
 if ('serviceWorker' in navigator) {
     // Registrar el Service Worker cuando la página cargue
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('/mi-pwa-tareas/service-worker.js')
             .then((registration) => {
                 console.log('Service Worker registrado exitosamente:', registration.scope);
             })
