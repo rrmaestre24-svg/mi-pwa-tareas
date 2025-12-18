@@ -5,26 +5,63 @@
     box-sizing: border-box;
 }
 
+/* Variables de color para tema claro */
+:root {
+    --bg-gradient-start: #667eea;
+    --bg-gradient-end: #764ba2;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --input-border: #e0e0e0;
+    --input-focus: #667eea;
+    --task-bg: #f9f9f9;
+    --task-hover: #f0f0f0;
+    --button-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --button-danger: #ff6b6b;
+    --button-danger-hover: #ff5252;
+    --button-success: #4CAF50;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgba(102, 126, 234, 0.4);
+}
+
+/* Variables de color para tema oscuro */
+body.dark-mode {
+    --bg-gradient-start: #1a1a2e;
+    --bg-gradient-end: #16213e;
+    --container-bg: #0f3460;
+    --text-color: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --input-border: #1a1a2e;
+    --input-focus: #667eea;
+    --task-bg: #16213e;
+    --task-hover: #1a1a2e;
+    --shadow: rgba(0, 0, 0, 0.6);
+}
+
 /* Estilos del body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     min-height: 100vh;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background 0.3s ease;
 }
 
 /* Contenedor principal */
 .container {
-    background: white;
+    background: var(--container-bg);
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px var(--shadow);
     padding: 30px;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
     animation: slideIn 0.5s ease-out;
+    transition: background 0.3s ease;
 }
 
 /* Animación de entrada */
@@ -42,18 +79,48 @@ body {
 /* Encabezado */
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    flex: 1;
+    text-align: center;
 }
 
 header h1 {
-    color: #333;
+    color: var(--text-color);
     font-size: 2.5em;
     margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 .subtitle {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+/* Toggle de modo oscuro */
+.theme-toggle {
+    background: var(--task-bg);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px var(--shadow-light);
 }
 
 /* Sección de input */
@@ -66,20 +133,22 @@ header h1 {
 #taskInput {
     flex: 1;
     padding: 15px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--input-border);
     border-radius: 10px;
     font-size: 1em;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
+    background: var(--container-bg);
+    color: var(--text-color);
 }
 
 #taskInput:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--input-focus);
 }
 
 #addButton {
     padding: 15px 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--button-primary);
     color: white;
     border: none;
     border-radius: 10px;
@@ -91,7 +160,7 @@ header h1 {
 
 #addButton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 15px var(--shadow-light);
 }
 
 #addButton:active {
@@ -108,12 +177,13 @@ header h1 {
 
 .filter-btn {
     padding: 8px 20px;
-    background: #f5f5f5;
+    background: var(--task-bg);
     border: 2px solid transparent;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 0.9em;
+    color: var(--text-color);
 }
 
 .filter-btn.active {
@@ -129,7 +199,7 @@ header h1 {
 /* Contador de tareas */
 .task-counter {
     text-align: center;
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 20px;
     font-size: 0.9em;
 }
@@ -138,15 +208,15 @@ header h1 {
 .task-list {
     list-style: none;
     margin-bottom: 20px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .task-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    background: #f9f9f9;
+    background: var(--task-bg);
     border-radius: 10px;
     margin-bottom: 10px;
+    padding: 15px;
     transition: all 0.3s;
     animation: fadeIn 0.3s ease-out;
 }
@@ -163,7 +233,7 @@ header h1 {
 }
 
 .task-item:hover {
-    background: #f0f0f0;
+    background: var(--task-hover);
     transform: translateX(5px);
 }
 
@@ -173,7 +243,14 @@ header h1 {
 
 .task-item.completed .task-text {
     text-decoration: line-through;
-    color: #999;
+    color: var(--text-muted);
+}
+
+/* Contenedor de la tarea */
+.task-main {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
 /* Checkbox personalizado */
@@ -183,29 +260,79 @@ header h1 {
     margin-right: 15px;
     cursor: pointer;
     accent-color: #667eea;
+    flex-shrink: 0;
+}
+
+/* Contenedor del texto de la tarea */
+.task-content {
+    flex: 1;
+    min-width: 0;
 }
 
 /* Texto de la tarea */
 .task-text {
-    flex: 1;
-    color: #333;
+    color: var(--text-color);
     font-size: 1em;
+    word-wrap: break-word;
+    margin-bottom: 4px;
 }
 
-/* Botón de eliminar tarea */
-.delete-btn {
-    background: #ff6b6b;
-    color: white;
+/* Fecha límite */
+.task-deadline {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.task-deadline.overdue {
+    color: var(--button-danger);
+    font-weight: bold;
+}
+
+/* Botones de acciones de tarea */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.task-btn {
     border: none;
-    padding: 8px 15px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 0.85em;
     transition: all 0.3s;
+    color: white;
+    font-weight: 500;
+}
+
+.edit-btn {
+    background: #4CAF50;
+}
+
+.edit-btn:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.calendar-btn {
+    background: #2196F3;
+}
+
+.calendar-btn:hover {
+    background: #0b7dda;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background: var(--button-danger);
 }
 
 .delete-btn:hover {
-    background: #ff5252;
+    background: var(--button-danger-hover);
     transform: scale(1.05);
 }
 
@@ -215,7 +342,7 @@ header h1 {
 }
 
 .clear-btn {
-    background: #ff6b6b;
+    background: var(--button-danger);
     color: white;
     border: none;
     padding: 12px 25px;
@@ -226,14 +353,14 @@ header h1 {
 }
 
 .clear-btn:hover {
-    background: #ff5252;
+    background: var(--button-danger-hover);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
 /* Prompt de instalación */
 .install-prompt {
-    background: #4CAF50;
+    background: var(--button-success);
     color: white;
     padding: 15px;
     border-radius: 10px;
@@ -252,7 +379,7 @@ header h1 {
 
 #installButton {
     background: white;
-    color: #4CAF50;
+    color: var(--button-success);
 }
 
 #dismissButton {
@@ -261,10 +388,129 @@ header h1 {
     border: 2px solid white;
 }
 
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background-color: var(--container-bg);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px var(--shadow);
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    color: var(--text-color);
+    margin: 0;
+}
+
+.close {
+    color: var(--text-secondary);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1em;
+    background: var(--container-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--input-focus);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-primary {
+    background: var(--button-primary);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow-light);
+}
+
+.btn-secondary {
+    background: var(--task-bg);
+    color: var(--text-color);
+    border: 2px solid var(--input-border);
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    border-color: var(--input-focus);
+}
+
 /* Responsive para móviles */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
     }
     
     header h1 {
@@ -277,5 +523,21 @@ header h1 {
     
     #addButton {
         width: 100%;
+    }
+    
+    .task-main {
+        flex-wrap: wrap;
+    }
+    
+    .task-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        width: 95%;
+        padding: 20px;
     }
 }

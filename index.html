@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#4CAF50">
-    <meta name="description" content="Aplicación de lista de tareas">
+    <meta name="description" content="Aplicación de lista de tareas con notificaciones y modo oscuro">
     
     <!-- Título de la aplicación -->
     <title>Mis Tareas</title>
@@ -23,8 +23,11 @@
     <div class="container">
         <!-- Encabezado -->
         <header>
-            <h1>📝 Mis Tareas</h1>
-            <p class="subtitle">Tu lista de tareas personal</p>
+            <button class="theme-toggle" id="themeToggle" title="Cambiar tema">🌙</button>
+            <div class="header-content">
+                <h1>📝 Mis Tareas</h1>
+                <p class="subtitle">Tu lista de tareas personal</p>
+            </div>
         </header>
 
         <!-- Formulario para agregar nuevas tareas -->
@@ -63,6 +66,42 @@
             <p>¡Instala esta app en tu dispositivo!</p>
             <button id="installButton">Instalar</button>
             <button id="dismissButton">Ahora no</button>
+        </div>
+    </div>
+
+    <!-- Modal para editar tarea -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Tarea</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="editTaskInput">Tarea:</label>
+                <input type="text" id="editTaskInput" maxlength="100">
+            </div>
+            
+            <div class="form-group">
+                <label for="editDeadline">Fecha límite (opcional):</label>
+                <input type="datetime-local" id="editDeadline">
+            </div>
+            
+            <div class="form-group" id="notificationGroup" style="display: none;">
+                <label for="editNotification">Notificar antes:</label>
+                <select id="editNotification">
+                    <option value="">Sin notificación</option>
+                    <option value="10">10 minutos antes</option>
+                    <option value="30">30 minutos antes</option>
+                    <option value="60">1 hora antes</option>
+                    <option value="1440">1 día antes</option>
+                </select>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelEdit">Cancelar</button>
+                <button class="btn-primary" id="saveEdit">Guardar</button>
+            </div>
         </div>
     </div>
 

@@ -1,7 +1,7 @@
 {
   "name": "Mis Tareas - Lista de Tareas",
   "short_name": "Mis Tareas",
-  "description": "Aplicación para gestionar tus tareas diarias",
+  "description": "Aplicación para gestionar tus tareas diarias con notificaciones y modo oscuro",
   "start_url": "/mi-pwa-tareas/",
   "scope": "/mi-pwa-tareas/",
   "display": "standalone",
@@ -23,5 +23,8 @@
     }
   ],
   "categories": ["productivity", "utilities"],
-  "screenshots": []
+  "screenshots": [],
+  "permissions": [
+    "notifications"
+  ]
 }
