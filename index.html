@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="description" content="Aplicación de lista de tareas">
+    
+    <!-- Título de la aplicación -->
+    <title>Mis Tareas</title>
+    
+    <!-- Enlace al manifest (configuración de la PWA) -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icono para Apple -->
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- Enlace a los estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Contenedor principal de la aplicación -->
+    <div class="container">
+        <!-- Encabezado -->
+        <header>
+            <h1>📝 Mis Tareas</h1>
+            <p class="subtitle">Tu lista de tareas personal</p>
+        </header>
+
+        <!-- Formulario para agregar nuevas tareas -->
+        <div class="input-section">
+            <input 
+                type="text" 
+                id="taskInput" 
+                placeholder="Escribe una nueva tarea..."
+                maxlength="100"
+            >
+            <button id="addButton">Agregar</button>
+        </div>
+
+        <!-- Filtros para mostrar tareas -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="todas">Todas</button>
+            <button class="filter-btn" data-filter="pendientes">Pendientes</button>
+            <button class="filter-btn" data-filter="completadas">Completadas</button>
+        </div>
+
+        <!-- Contador de tareas -->
+        <div class="task-counter">
+            <span id="taskCount">0 tareas pendientes</span>
+        </div>
+
+        <!-- Lista donde se mostrarán las tareas -->
+        <ul id="taskList" class="task-list"></ul>
+
+        <!-- Botón para limpiar tareas completadas -->
+        <div class="actions">
+            <button id="clearCompleted" class="clear-btn">Limpiar Completadas</button>
+        </div>
+
+        <!-- Indicador de estado de instalación -->
+        <div id="installPrompt" class="install-prompt" style="display: none;">
+            <p>¡Instala esta app en tu dispositivo!</p>
+            <button id="installButton">Instalar</button>
+            <button id="dismissButton">Ahora no</button>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript de la aplicación -->
+    <script src="app.js"></script>
+</body>
+</html>
